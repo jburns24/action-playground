@@ -8,13 +8,13 @@ inputs:
     default: "What is the answer to the universe?"
 
 outputs:
-  question-answer:
+  answer:
     description: "The answer to your question"
-    value: ${{ steps.answer-step.outputs.question-answer }}
+    value: ${{ steps.answer-step.outputs.answer }}
 
 runs:
   using: composite
   steps:
     - id: answer-step
-      run: echo "question-answer=${{ inputs.question }} 42" >> GITHUB_OUTPUT
+      run: echo "answer=${{ inputs.question }} 42" >> GITHUB_OUTPUT
       shell: bash
