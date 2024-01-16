@@ -39,3 +39,11 @@ jobs:
       - name: echo output plus matrix stragey
         id: question
         run: echo "${{ needs.simple-output.outputs.question }}-${{ matrix.number }}"
+
+  composit-action-test:
+    runs-on: ubuntu-latest
+    steps:
+      - id: test-composite-action
+        uses: jburns24/action-playground@master
+        with:
+          question: 'What should I do when I get home?'
