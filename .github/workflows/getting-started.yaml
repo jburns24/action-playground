@@ -40,12 +40,12 @@ jobs:
         id: question
         run: echo "${{ needs.simple-output.outputs.question }}-${{ matrix.number }}"
 
-  composit-action-test:
+  composite-action-test:
     runs-on: ubuntu-latest
     steps:
       - id: test-composite-action
         uses: jburns24/action-playground@master
         with:
           question: 'What should I do when I get home?'
-      - run: echo random-number ${{ steps.test-composit-action.outputs.question-answer }}
+      - run: echo Your question and answer are -- ${{ steps.test-composite-action.outputs.question-answer }}
         shell: bash
