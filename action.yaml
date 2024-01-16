@@ -10,11 +10,11 @@ inputs:
 outputs:
   answer:
     description: "The answer to your question"
-    value: ${{ steps.answer-step.outputs.answer }}
+    value: ${{ steps.answer-step.outputs.question-answer }}
 
 runs:
   using: composite
   steps:
     - id: answer-step
-      run: echo "answer=${{ inputs.question }} 42" >> GITHUB_OUTPUT
+      run: echo "question-answer=${{ inputs.question }} 42" >> GITHUB_OUTPUT
       shell: bash

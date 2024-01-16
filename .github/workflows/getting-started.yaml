@@ -47,3 +47,5 @@ jobs:
         uses: jburns24/action-playground@master
         with:
           question: 'What should I do when I get home?'
+      - run: echo random-number ${{ steps.test-composit-action.outputs.question-answer }}
+        shell: bash
