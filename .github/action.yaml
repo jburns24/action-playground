@@ -1,0 +1,20 @@
+name: "Composite Action Test"
+description: "Answers any question you give it"
+
+inputs:
+  question: # id of the input
+    description: 'The question you want answered'
+    required: false
+    default: "What is the answer to the universe?"
+
+outputs:
+  answer:
+    description: "The answer to your question"
+    value: ${{ steps.answer-step.outputs.answer }}
+
+runs:
+  using: composite
+  steps:
+    - id: answer-step
+      run: echo "answer=${{ inputs.question }} 42" >> GITHUB_OUTPUT
+      shell: bash
