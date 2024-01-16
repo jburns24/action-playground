@@ -3,6 +3,7 @@ name: CI
 
 # The trigger you want for the workflow, in this case, a push to the master branch
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -15,4 +16,26 @@ jobs:
 
     steps:
       - name: Run a one-line script
-        run: echo Hello, world!
+        run: echo ${{ secrets.PASSWORD }}!
+  # The name of the job, this can be anything
+  simple-output:
+    # The type of runner you want to use, in this case, a GitHub-hosted runner
+    runs-on: ubuntu-latest
+
+    outputs:
+      question: ${{ steps.question.outputs.question }}
+    steps:
+      - name: Capture output
+        id: question
+        run: echo "question=The answer to the universe?" >> $GITHUB_OUTPUT
+  matrix-test:
+    # The type of runner you want to use, in this case, a GitHub-hosted runner
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        number: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    needs: simple-output
+    steps:
+      - name: echo output plus matrix stragey
+        id: question
+        run: echo "${{ needs.simple-output.outputs.question }}-${{ matrix.number }}"
