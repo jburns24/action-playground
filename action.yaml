@@ -16,5 +16,5 @@ runs:
   using: composite
   steps:
     - id: answer-step
-      run: echo "answer=${{ inputs.question }} 42" >> GITHUB_OUTPUT
+      run: echo echo "::set-output name=answer::${{ inputs.question }} 42"
       shell: bash
