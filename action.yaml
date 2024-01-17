@@ -7,14 +7,21 @@ inputs:
     required: false
     default: "What is the answer to the universe?"
 
+# outputs:
+#   answer:
+#     description: "The answer to your question"
+#     value: ${{ steps.answer-step.outputs.answer }}
 outputs:
-  answer:
-    description: "The answer to your question"
-    value: ${{ steps.answer-step.outputs.answer }}
+  random-number:
+    description: "Random number"
+    value: ${{ steps.random-number-generator.outputs.random-number }}
 
 runs:
   using: composite
   steps:
-    - id: answer-step
-      run: echo echo "::set-output name=answer::${{ inputs.question }} 42"
+    # - id: answer-step
+    #   run: echo "answer=${{ inputs.question }} 42" >> GITHUB_OUTPUT
+    #   shell: bash
+    - id: random-number-generator
+      run: echo "random-number=${{ inputs.question}} $(echo $RANDOM)" >> $GITHUB_OUTPUT
       shell: bash
