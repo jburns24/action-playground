@@ -15,6 +15,13 @@ outputs:
 runs:
   using: composite
   steps:
-    - id: answer-step
-      run: echo "answer=${{ inputs.question }} 42" >> $GITHUB_OUTPUT
+    - run: echo "${{ inputs.question }} 42" >> ./answer.txt
       shell: bash
+    - id: answer-step
+      run: echo "answer=$(cat ./answer.txt)" >> $GITHUB_OUTPUT
+      shell: bash
+    # - id: upload-artifact
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: answer
+    #     path: $GITHUB_OUTPUT
