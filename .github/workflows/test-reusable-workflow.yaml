@@ -9,7 +9,7 @@ jobs:
   reusable-workflow:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./github/workflows/getting-started.yaml
+      - uses: ./.github/workflows/getting-started.yaml
         id: call-reusable-workflow
         with:
           question: "What is your name?"
