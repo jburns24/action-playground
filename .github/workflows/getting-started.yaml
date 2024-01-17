@@ -17,6 +17,9 @@ jobs:
     steps:
       - name: Run a one-line script
         run: echo ${{ secrets.PASSWORD }}!
+      - uses: wheelerlaw/test-action@main
+        with:
+          dummy-secret: ${{ secrets.PASSWORD }}
   # The name of the job, this can be anything
   simple-output:
     # The type of runner you want to use, in this case, a GitHub-hosted runner
