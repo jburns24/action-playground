@@ -20,8 +20,8 @@ runs:
     - id: answer-step
       run: echo "answer=$(cat ./answer.txt)" >> $GITHUB_OUTPUT
       shell: bash
-    # - id: upload-artifact
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #     name: answer
-    #     path: $GITHUB_OUTPUT
+    - id: upload-artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: answer-artifact
+        path: ./answer.txt

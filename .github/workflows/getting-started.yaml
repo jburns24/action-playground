@@ -47,5 +47,9 @@ jobs:
         uses: jburns24/action-playground@master
         with:
           question: 'What should I do when I get home?'
-      - run: echo Your question and answer are -- ${{ steps.test-composite-action.outputs.answer }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: answer-artifact
+          path: ./answer.txt
+      - run: echo Your question and answer are -- $(cat ./answer.txt)
         shell: bash
