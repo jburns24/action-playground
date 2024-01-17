@@ -3,10 +3,18 @@ name: CI
 
 # The trigger you want for the workflow, in this case, a push to the master branch
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - master
+  workflow_call:
+    inputs:
+      question:
+            description: 'The question to ask'
+            required: true
+            default: 'What is the meaning of life?'
+            type: string
+    outputs:
+      answer:
+        description: 'The answer to the question'
+        value: ${{ jobs.composite-action-test.outputs.final_answer }}
+
 
 jobs:
   # The name of the job, this can be anything
@@ -45,6 +53,8 @@ jobs:
 
   composite-action-test:
     runs-on: ubuntu-latest
+    outputs:
+      final_answer: ${{ steps.final-answer.outputs.final_answer }}
     steps:
       - id: test-composite-action
         uses: jburns24/action-playground@master
@@ -55,5 +65,6 @@ jobs:
           name: answer-artifact
       - name: Display structure of downloaded files
         run: ls -R
-      - run: echo Your question and answer are -- $(cat ./answer.txt)
+      - run: echo "final_answer=Your question and answer are -- $(cat ./answer.txt)" >> $GITHUB_OUTPUT
+        id: final-answer
         shell: bash

@@ -1,0 +1,16 @@
+name: Test Reusable workflow
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  reusable-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./github/workflows/getting-started.yaml
+        id: call-reusable-workflow
+        with:
+          question: "What is your name?"
+      - run: echo "The answer is ${{ steps.call-reusable-workflow.outputs.answer }}!"
