@@ -50,6 +50,5 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: answer-artifact
-          path: ./answer.txt
       - run: echo Your question and answer are -- $(cat ./answer.txt)
         shell: bash
