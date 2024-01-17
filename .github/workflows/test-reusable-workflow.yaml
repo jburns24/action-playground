@@ -6,11 +6,11 @@ on:
       - master
 
 jobs:
+  calls-reusable-workflow:
+    uses: ./.github/workflows/getting-started.yaml
+    with:
+      question: "What is your name?"
   reusable-workflow:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/workflows/getting-started.yaml
-        id: call-reusable-workflow
-        with:
-          question: "What is your name?"
-      - run: echo "The answer is ${{ steps.call-reusable-workflow.outputs.answer }}!"
+      - run: echo "The answer is ${{ needs.calls-reusable-workflow.outputs.answer }}!"
