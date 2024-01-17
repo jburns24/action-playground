@@ -50,5 +50,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: answer-artifact
+      - name: Display structure of downloaded files
+        run: ls -R
       - run: echo Your question and answer are -- $(cat ./answer.txt)
         shell: bash
