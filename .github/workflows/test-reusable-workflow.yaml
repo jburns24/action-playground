@@ -12,5 +12,6 @@ jobs:
       question: "What is your name?"
   reusable-workflow:
     runs-on: ubuntu-latest
+    needs: calls-reusable-workflow
     steps:
       - run: echo "The answer is ${{ needs.calls-reusable-workflow.outputs.answer }}!"
