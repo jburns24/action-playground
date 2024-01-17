@@ -23,5 +23,6 @@ runs:
     #   run: echo "answer=${{ inputs.question }} 42" >> GITHUB_OUTPUT
     #   shell: bash
     - id: random-number-generator
-      run: echo "answer=${{ inputs.question}} $(echo $RANDOM)" >> $GITHUB_OUTPUT
+      run: echo "answer=${{ inputs.question }} 42" >> GITHUB_OUTPUT
+      # run: echo "answer=${{ inputs.question}} $(echo $RANDOM)" >> $GITHUB_OUTPUT
       shell: bash
