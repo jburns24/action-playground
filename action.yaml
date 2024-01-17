@@ -14,7 +14,7 @@ inputs:
 outputs:
   answer:
     description: "Random number"
-    value: ${{ steps.random-number-generator.outputs.random-number }}
+    value: ${{ steps.random-number-generator.outputs.answer }}
 
 runs:
   using: composite
@@ -23,5 +23,5 @@ runs:
     #   run: echo "answer=${{ inputs.question }} 42" >> GITHUB_OUTPUT
     #   shell: bash
     - id: random-number-generator
-      run: echo "random-number=${{ inputs.question}} $(echo $RANDOM)" >> $GITHUB_OUTPUT
+      run: echo "answer=${{ inputs.question}} $(echo $RANDOM)" >> $GITHUB_OUTPUT
       shell: bash
