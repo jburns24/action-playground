@@ -12,7 +12,7 @@ inputs:
 #     description: "The answer to your question"
 #     value: ${{ steps.answer-step.outputs.answer }}
 outputs:
-  random-number:
+  answer:
     description: "Random number"
     value: ${{ steps.random-number-generator.outputs.random-number }}
 
